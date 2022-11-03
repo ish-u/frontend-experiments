@@ -1,0 +1,51 @@
+.grid {
+  display: grid;
+  height: calc(100vh);
+  width: calc(100vw);
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  background-size: 400% 400%;
+  animation: gradient 3s ease infinite;
+  padding: 10px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.tileInvisible {
+  @apply bg-emerald-500;
+  animation: invisible 0.5s forwards;
+}
+
+@keyframes invisible {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+.tileVisible {
+  @apply bg-emerald-500;
+  animation: visible 0.5s forwards;
+}
+@keyframes visible {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
