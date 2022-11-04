@@ -9,7 +9,6 @@ const Grid = () => {
   useEffect(() => {
     const resize = () => {
       const rows = Math.floor(window.innerHeight / 100);
-
       const cols = Math.floor(window.innerWidth / 100);
 
       grid.current?.style.setProperty("--columns", cols.toString());
@@ -33,7 +32,7 @@ const Grid = () => {
     };
   }, []);
 
-  const setVisible = (r: number, c: number) => {
+  const setVisible = (r: number, c: number): boolean => {
     const key = r.toString() + c.toString();
     if (visited.current[key] === false) {
       visited.current[key] = true;
@@ -49,11 +48,13 @@ const Grid = () => {
           setVisible(r + 1, c - 1);
           setVisible(r - 1, c + 1);
           setVisible(r - 1, c - 1);
+          return false;
         }, 50);
       }
     }
+    return false;
   };
-  const setInvisible = (r: number, c: number) => {
+  const setInvisible = (r: number, c: number): boolean => {
     const key = r.toString() + c.toString();
     if (visited.current[key] === true) {
       visited.current[key] = false;
@@ -69,14 +70,16 @@ const Grid = () => {
           setInvisible(r + 1, c - 1);
           setInvisible(r - 1, c + 1);
           setInvisible(r - 1, c - 1);
+          return false;
         }, 50);
       }
     }
+    return false;
   };
   return (
     <div
       ref={grid}
-      className={`${styles.grid} bg-gradient-to-r from-emerald-800 to-blue-900`}
+      className={`${styles.grid} bg-gradient-to-r from-emerald-400 via-sky-400 to-emerald-400`}
     >
       {tiles.map((row, r) =>
         row.map((e, c) => (
